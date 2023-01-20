@@ -7,6 +7,8 @@ import {motion, AnimatePresence} from 'framer-motion'
 const Movieapp = () => {
     const [popular,setPopular] =useState([])
     const [filtered,setFiltred] = useState([])
+    const [search,setSearch] = useState('')
+    console.log(search)
     const[genre,setGenre]= useState(0)
    
     const GetMovies = async ()=>{
@@ -26,11 +28,25 @@ const Movieapp = () => {
     
      >
       <AnimatePresence>
+        <motion.div layout className="header">
+        <div className="logo">THDB</div>
+        <div className="search">
+          <input value={search} onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='Search' />
+        </div>
+        </motion.div>
       <Filter popular={popular} setFiltred={setFiltred} genre={genre} setGenre={setGenre}/>
        <motion.div className="movie" initial={{opacity:0,scale:0}}
     animate={{opacity:1,scale:1,transition:{duration:1}}}
     >
-       {filtered.map((movie,index)=>(
+       {filtered.filter((item)=>{
+        if(search ==''){
+           return item;
+
+        }
+        else if ( item.title.toLowerCase().includes(search.toLocaleLowerCase())){
+          return item;
+        }
+       }).map((movie,index)=>(
         <MovieItem genre={genre} key={index} movie={movie}/>
        ))}
        </motion.div>
@@ -44,11 +60,40 @@ export default Movieapp
 const Moviestyle = styled(motion.div)`
 width: var(--container-width-lg);
 margin: auto;
-padding: 5rem 0rem;
+padding: 1rem 0rem;
 .movie{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
     gap: 2rem;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.logo{
+   font-weight: 700;
+   -webkit-text-fill-color: transparent;
+    text-align: center;
+    background: linear-gradient(to left, rgb(172, 182, 229), rgb(134, 253, 232)) text;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+}
+.search{
+ input{
+  width: 10rem;
+  padding: 0.7rem 1rem;
+  border-radius: 2rem;
+  border: 2px solid transparent;
+  background-color: var(--color-bg-variant);
+  outline: none;
+  color: var(--color-light);
+  &:focus{
+    background-color: transparent;
+    border-color: var(--color-bg-variant) ;
+  }
+ }
 }
 
 /* media queries */
@@ -56,6 +101,13 @@ padding: 5rem 0rem;
 
 @media screen and (max-width:665px) {
     width: var(--container-width-md);
+    .search{
+ input{
+  width: 7rem;
+  padding: 0.6rem 1rem;
+  
+ }
+}
     
 }
 `
