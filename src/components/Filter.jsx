@@ -15,6 +15,7 @@ const Filter = ({setGenre,genre,setFiltred,popular}) => {
       <button onClick={()=>setGenre(0)} className={genre===0?'active btn':'btn'} >All</button>
       <button onClick={()=>setGenre(35)} className={genre===35?'active btn': 'btn'} >Comedy</button>
       <button onClick={()=>setGenre(28)} className={genre===28?'active btn': 'btn'} >Action</button>
+      <button onClick={()=>setGenre(12)} className={genre===12?'active btn': 'btn'} >Adventure</button>
      
     </Filterstyle>
   )
@@ -49,5 +50,8 @@ gap: 1.5rem;
   color: var(--color-bg);
   border: transparent;
 
+}
+@media screen and (max-width:665px) {
+gap: 0.5rem;
 }
 `

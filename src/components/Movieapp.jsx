@@ -8,17 +8,19 @@ const Movieapp = () => {
     const [popular,setPopular] =useState([])
     const [filtered,setFiltred] = useState([])
     const [search,setSearch] = useState('')
-    console.log(search)
+    const [changeColor,setChangeColor] = useState()
+    console.log(popular)
     const[genre,setGenre]= useState(0)
-   
-    const GetMovies = async ()=>{
-        const data = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=13aa08f7158e98f3eaf67a36b6c14e0a')
+   const URL_API_popular = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=13aa08f7158e98f3eaf67a36b6c14e0a'
+   const URL_API_hightRated = 'https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=13aa08f7158e98f3eaf67a36b6c14e0a'
+    const GetMovies = async (url)=>{
+        const data = await fetch(url)
         const movies = await data.json()
         setPopular(movies.results)
         setFiltred(movies.results)
     }
     useEffect(()=>{
-        GetMovies()
+        GetMovies(URL_API_popular)
      },[])
    
    
@@ -63,7 +65,7 @@ margin: auto;
 padding: 1rem 0rem;
 .movie{
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     gap: 2rem;
 }
 .header{
@@ -71,12 +73,11 @@ padding: 1rem 0rem;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3rem;
+  
 }
 .logo{
    font-weight: 700;
-   /* -webkit-text-fill-color: transparent; */
     text-align: center;
-    /* background: linear-gradient(to left,var(--color-light-violet),var(--color-light-blue)) text; */
     font-size: 1.5rem;
     letter-spacing: 5px;
     -webkit-text-fill-color: transparent;
