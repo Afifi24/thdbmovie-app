@@ -6,8 +6,8 @@ const MovieItem = ({movie,genre}) => {
     <Movieitemstyle layout initial={{opacity:0,}}
     animate={{opacity:1,transition:{duration:0.5}}} exit={{opacity:0}} key={genre}>
       <h3>{movie.title}</h3>
-     <div className="image">
-     <img src={"https://image.tmdb.org/t/p/w500" + movie.backdrop_path }alt="" />
+     <div layout className="image">
+     <img  src={"https://image.tmdb.org/t/p/w500" + movie.backdrop_path }alt="" />
      </div>
     </Movieitemstyle>
   )
@@ -44,6 +44,9 @@ img{
 h3{
     font-size: 0.8rem;
     margin-bottom: 1rem;
-    color: #e2d9d9;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(to left,var(--color-light-violet),var(--color-light-blue));
+    -webkit-background-clip: text;
+    
 }
 `

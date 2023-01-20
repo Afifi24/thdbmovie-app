@@ -74,11 +74,14 @@ padding: 1rem 0rem;
 }
 .logo{
    font-weight: 700;
-   -webkit-text-fill-color: transparent;
+   /* -webkit-text-fill-color: transparent; */
     text-align: center;
-    background: linear-gradient(to left, rgb(172, 182, 229), rgb(134, 253, 232)) text;
+    /* background: linear-gradient(to left,var(--color-light-violet),var(--color-light-blue)) text; */
     font-size: 1.5rem;
     letter-spacing: 5px;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(to left,var(--color-light-violet),var(--color-light-blue));
+    -webkit-background-clip: text;
 }
 .search{
  input{

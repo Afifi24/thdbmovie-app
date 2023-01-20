@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
 --color-primary-variant:rgba(77,181,255,0.4);
 --color-white:#fff;
 --color-light:rgba(255,255,255,0.6);
+--color-light-blue:  rgb(134, 253, 232);
+--color-light-violet:  rgb(172, 182, 229);
 --container-width-lg:80%;
 --container-width-md:90%;
 --transition:500ms;
