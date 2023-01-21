@@ -4,15 +4,16 @@ import MovieItem from './MovieItem';
 import styled from 'styled-components';
 import Filter from './Filter';
 import {motion, AnimatePresence} from 'framer-motion'
-const Movieapp = () => {
+const Movieapp = ({OpenClose,Popup,setFiltred,filtered}) => {
     const [popular,setPopular] =useState([])
-    const [filtered,setFiltred] = useState([])
     const [search,setSearch] = useState('')
-    const [changeColor,setChangeColor] = useState()
     console.log(popular)
+    
     const[genre,setGenre]= useState(0)
    const URL_API_popular = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=13aa08f7158e98f3eaf67a36b6c14e0a'
    const URL_API_hightRated = 'https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=13aa08f7158e98f3eaf67a36b6c14e0a'
+
+
     const GetMovies = async (url)=>{
         const data = await fetch(url)
         const movies = await data.json()
@@ -20,7 +21,7 @@ const Movieapp = () => {
         setFiltred(movies.results)
     }
     useEffect(()=>{
-        GetMovies(URL_API_popular)
+        GetMovies(URL_API_popular )
      },[])
    
    
@@ -49,10 +50,11 @@ const Movieapp = () => {
           return item;
         }
        }).map((movie,index)=>(
-        <MovieItem genre={genre} key={index} movie={movie}/>
+        <MovieItem Popup={Popup} OpenClose={OpenClose} genre={genre} key={index} movie={movie}/>
        ))}
        </motion.div>
        </AnimatePresence>
+     
     </Moviestyle>
   )
 }
@@ -103,8 +105,11 @@ padding: 1rem 0rem;
 /* media queries */
 
 
+@media screen and (max-width:1024px) {
+  width: var(--container-width-md);
+  
+}
 @media screen and (max-width:665px) {
-    width: var(--container-width-md);
     .search{
  input{
   width: 7rem;
