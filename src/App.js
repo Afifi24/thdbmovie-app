@@ -2,6 +2,7 @@ import  Globalstyle from "./Globalstyle";
 import Movieapp from "./components/Movieapp";
 import { useState } from "react";
 import PopupCard from "./components/PopupCard";
+import { AnimatePresence } from "framer-motion";
 function App() {
   const [elements,setElements] = useState([])
   const [isopen,setIsopen] = useState(false)
@@ -18,9 +19,11 @@ function App() {
     }
   return (
     <div >
+      <AnimatePresence>
       <Globalstyle/>
      <Movieapp setFiltred={setFiltred} filtered={filtered} OpenClose={OpenClose} Popup={Popup}/>
      {isopen && <PopupCard elements={elements} setIsopen={setIsopen}/>}
+     </AnimatePresence>
     </div>
   );
 }

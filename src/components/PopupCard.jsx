@@ -1,6 +1,7 @@
 import React,{useRef,useEffect} from 'react'
 import styled from 'styled-components'
 import img from '../images/design9.png'
+import {motion,AnimatePresence} from 'framer-motion'
 import {FaRegTimesCircle}  from 'react-icons/fa'
 const PopupCard = ({setIsopen,elements}) => {
     const useref = useRef()
@@ -11,9 +12,11 @@ const PopupCard = ({setIsopen,elements}) => {
     const {title,vote_average} = elements
    }
   return (
+    <AnimatePresence>
     <Popstyle>
+        
       <div onClick={Close} ref={useref} className="container">
-           <div className="popcard">
+           <motion.div initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1,transition:{duration:1}}} exit={{opacity:0,scale:0, transition:{duration:3}}} className="popcard">
             <div className="image">
                 <img src={"https://image.tmdb.org/t/p/w500" + elements.poster_path} alt="" />
             </div>
@@ -26,16 +29,18 @@ const PopupCard = ({setIsopen,elements}) => {
                  </div>
                 <button onClick={()=>setIsopen(false)}><FaRegTimesCircle/></button>
             </div>
-           </div>
+           </motion.div>
       </div>
+     
     </Popstyle>
+    </AnimatePresence>
   )
 }
 
 export default PopupCard
 
 
-const Popstyle = styled.div`
+const Popstyle = styled(motion.div)`
 .container{
     background-color: rgba(0,0,0,0.8);
     position: fixed;
@@ -57,7 +62,6 @@ const Popstyle = styled.div`
     place-items: center;
     position: relative;
     border-radius: 1rem;
-    /* overflow: hidden; */
     box-shadow: 0rem 0rem 2rem rgba(256,256,256,0.4);
 }
 .image{
@@ -97,7 +101,7 @@ const Popstyle = styled.div`
 }
 .date-rating{
     position: absolute;
-    bottom: 2rem;
+    bottom: 1rem;
     display: flex;
     justify-content: space-between;
     padding: 0rem 1rem;
@@ -118,40 +122,47 @@ const Popstyle = styled.div`
 /* ===MEDIA QUERIES=== */
 @media screen and (max-width:1024px) {
  .popcard{
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 50%;
  }
   
 }
-@media screen and (max-width:800px) {
+@media screen and (max-width:736px) {
  .popcard{
+    width: 80%;
+    height: 50%;
     grid-template-columns: 1fr;
-    gap: 0rem;
-    
+ }
+ .content{
+    position: unset;
+    gap:0.5rem;
+    h2{
+        font-size: 0.9rem;
+    }
+    p{
+        font-size: 0.8rem;
+    }
  }
  .image{
-    height: 38vh;
-    margin-top: -5rem;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-   border-bottom-left-radius: 0rem;
+ border-top-left-radius: 1rem;
+ border-top-right-radius: 1rem;
+ border-bottom-left-radius: 0rem;
  }
-  .content{
-    position: unset;
-    padding-top: 0;
-    padding-bottom: 0;
-    button{
-        position: absolute;
-        right: -1.5rem;
-        top: -3.3rem;
-        font-size: 2rem;
-        font-weight: 400;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        color: var(--color-white);
-       
+ .date-rating{
+    padding: 0rem ;
+
+    .rating{
+        background-color: var(--color-primary);
+        padding: 0.3rem 0.5rem;
+        border-radius: 0.5rem;
+        color: var(--color-bg);
+       font-size: 0.9rem;
+
     }
-  }
+    .date{
+       font-size: 0.9rem;
+    }
 }
+}
+
 `

@@ -28,7 +28,7 @@ export default MovieItem
 const Movieitemstyle = styled(motion.div)`
 .image{
     width: 100%;
-    height: 50vh;
+    height: 40vh;
     overflow: hidden;
     border: 5px solid transparent;
     border-radius:1rem ;
@@ -55,7 +55,7 @@ h3{
   border: 1px solid transparent;
   padding: 0.5rem;
   border-radius: 1rem;
-  height: 70vh;
+  height: 60vh;
   background-color: var(--color-bg-variant);
   &:hover{
     background-color: transparent;
