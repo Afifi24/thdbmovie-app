@@ -132,10 +132,12 @@ const Popstyle = styled(motion.div)`
     width: 80%;
     height: 70%;
     grid-template-columns: 1fr;
+    
  }
  .content{
     position: unset;
     gap:0.5rem;
+    padding-top: 0rem;
     /* padding: 1rem; */
     h2{
         font-size: 0.9rem;
@@ -149,7 +151,7 @@ const Popstyle = styled(motion.div)`
  border-top-right-radius: 1rem;
  border-bottom-left-radius: 0rem;
  display: inline;
- height:50% ;
+ height:85% ;
  position: relative;
  top: -50%;
  transform: translateY(50%);
