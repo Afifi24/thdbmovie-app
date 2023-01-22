@@ -130,12 +130,13 @@ const Popstyle = styled(motion.div)`
 @media screen and (max-width:736px) {
  .popcard{
     width: 80%;
-    height: 50%;
+    height: 70%;
     grid-template-columns: 1fr;
  }
  .content{
     position: unset;
     gap:0.5rem;
+    /* padding: 1rem; */
     h2{
         font-size: 0.9rem;
     }
@@ -147,6 +148,11 @@ const Popstyle = styled(motion.div)`
  border-top-left-radius: 1rem;
  border-top-right-radius: 1rem;
  border-bottom-left-radius: 0rem;
+ display: inline;
+ height:50% ;
+ position: relative;
+ top: -50%;
+ transform: translateY(50%);
  }
  .date-rating{
     padding: 0rem ;
