@@ -112,7 +112,7 @@ padding: 1rem 0rem;
 @media screen and (max-width:665px) {
     .search{
  input{
-  width: 9rem;
+  width: 12rem;
   padding: 0.6rem 1rem;
   
  }
