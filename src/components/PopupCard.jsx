@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import img from '../images/design9.png'
 import {motion,AnimatePresence} from 'framer-motion'
 import {FaRegTimesCircle}  from 'react-icons/fa'
-const PopupCard = ({setIsopen,elements}) => {
+const PopupCard = ({setIsopen,elements,isopen}) => {
     const useref = useRef()
    const Close = (e)=>{
     if(useref.current==e.target){
@@ -12,28 +12,35 @@ const PopupCard = ({setIsopen,elements}) => {
     const {title,vote_average} = elements
    }
   return (
-    <AnimatePresence>
-    <Popstyle>
-        
-      <div onClick={Close} ref={useref} className="container">
-           <motion.div initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1,transition:{duration:1}}} exit={{opacity:0,scale:0, transition:{duration:3}}} className="popcard">
-            <div className="image">
-                <img src={"https://image.tmdb.org/t/p/w500" + elements.poster_path} alt="" />
-            </div>
-            <div className="content">
-                <h2>{elements.title}</h2>
-                <p>{elements.overview}</p>
-                 <div className="date-rating">
-                    <h4 className='date'>{elements.release_date}</h4>
-                 <h4 className='rating'>{elements.vote_average}</h4>
-                 </div>
-                <button onClick={()=>setIsopen(false)}><FaRegTimesCircle/></button>
-            </div>
-           </motion.div>
-      </div>
-     
+      <div>
+      <AnimatePresence>
+     <Popstyle>
+        <div onClick={Close} ref={useref} className="container">
+            {isopen?(
+                <motion.div 
+                initial={{ opacity: 0, scale: 0 }} 
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }} 
+                exit={{ opacity: 0, scale: 0.5, transition: { duration: 3 } }}
+                key={isopen}
+                className="popcard">
+                <div className="image">
+                    <img src={"https://image.tmdb.org/t/p/w500" + elements.poster_path} alt="" />
+                </div>
+                <div className="content">
+                    <h2>{elements.title}</h2>
+                    <p>{elements.overview}</p>
+                    <div className="date-rating">
+                        <h4 className='date'>{elements.release_date}</h4>
+                        <h4 className='rating'>{elements.vote_average}</h4>
+                    </div>
+                    <button onClick={() => setIsopen(false)}><FaRegTimesCircle /></button>
+                </div>
+            </motion.div>
+            ):null}
+        </div>
     </Popstyle>
-    </AnimatePresence>
+</AnimatePresence>
+    </div>
   )
 }
 

@@ -22,7 +22,7 @@ function App() {
       <AnimatePresence>
       <Globalstyle/>
      <Movieapp setFiltred={setFiltred} filtered={filtered} OpenClose={OpenClose} Popup={Popup}/>
-     {isopen && <PopupCard elements={elements} setIsopen={setIsopen}/>}
+     {isopen && <PopupCard key={isopen} isopen={isopen} elements={elements} setIsopen={setIsopen}/>}
      </AnimatePresence>
     </div>
   );
