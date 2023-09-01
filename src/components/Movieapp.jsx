@@ -46,7 +46,7 @@ const Movieapp = ({OpenClose,Popup,setFiltred,filtered}) => {
            return item;
 
         }
-        else if ( item.title.toLowerCase().includes(search.toLocaleLowerCase())){
+        else if ( item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
           return item;
         }
        }).map((movie,index)=>(

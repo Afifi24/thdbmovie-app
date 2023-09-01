@@ -1,6 +1,6 @@
 import React,{useRef,useEffect} from 'react'
 import styled from 'styled-components'
-import img from '../images/design9.png'
+import { card } from './animation'
 import {motion,AnimatePresence} from 'framer-motion'
 import {FaRegTimesCircle}  from 'react-icons/fa'
 const PopupCard = ({setIsopen,elements,isopen}) => {
@@ -9,19 +9,23 @@ const PopupCard = ({setIsopen,elements,isopen}) => {
     if(useref.current==e.target){
         setIsopen(false)
     }
-    const {title,vote_average} = elements
    }
   return (
       <div>
-      <AnimatePresence>
-     <Popstyle>
-        <div onClick={Close} ref={useref} className="container">
-            {isopen?(
+      <AnimatePresence mode='wait'>
+       <Popstyle>
+        <motion.div 
+                variants={card}
+                initial='hidden'
+                animate='show' 
+                exit='exit'
+                key={isopen} 
+                onClick={Close} 
+                ref={useref} 
+                className="container">
+            {isopen && (
                 <motion.div 
-                initial={{ opacity: 0, scale: 0 }} 
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }} 
-                exit={{ opacity: 0, scale: 0.5, transition: { duration: 3 } }}
-                key={isopen}
+                
                 className="popcard">
                 <div className="image">
                     <img src={"https://image.tmdb.org/t/p/w500" + elements.poster_path} alt="" />
@@ -36,10 +40,10 @@ const PopupCard = ({setIsopen,elements,isopen}) => {
                     <button onClick={() => setIsopen(false)}><FaRegTimesCircle /></button>
                 </div>
             </motion.div>
-            ):null}
-        </div>
+            )}
+        </motion.div>
     </Popstyle>
-</AnimatePresence>
+            </AnimatePresence>
     </div>
   )
 }
